@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -11,12 +11,8 @@ const DashboardStudent = ({ user }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
 
-  useEffect(() => {
-    fetchEvents();
-    fetchMyRegistrations();
-  }, [search, category]);
-
-  const fetchEvents = async () => {
+ 
+  const fetchEvents = useCallback (async () => {
     try {
       const res = await axios.get('http://localhost:5000/api/events', {
         params: { search, category: category !== 'all' ? category : undefined, status: 'upcoming' }
@@ -25,16 +21,22 @@ const DashboardStudent = ({ user }) => {
     } catch (error) {
       toast.error('Failed to load events');
     }
-  };
+  }, [search, category]);
 
-  const fetchMyRegistrations = async () => {
+  const fetchMyRegistrations = useCallback (async () => {
     try {
       const res = await axios.get('http://localhost:5000/api/registration/my-registrations');
       setMyRegistrations(res.data);
     } catch (error) {
       toast.error('Failed to load registrations');
     }
-  };
+  }, []);
+
+   useEffect(() => {
+    fetchEvents();
+    fetchMyRegistrations();
+  }, [fetchEvents, fetchMyRegistrations]);
+
 
   const handleCancelRegistration = async (regId) => {
     if (window.confirm('Are you sure you want to cancel this registration?')) {
