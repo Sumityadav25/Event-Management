@@ -46,7 +46,7 @@ const EventForm = ({ selectedEvent, fetchEvents, clearSelectedEvent }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (selectedEvent) {
-      axios.put(`http://localhost:5000/api/events/${selectedEvent._id}`, form)
+      axios.put(`https://event-management-1-gg05.onrender.com/api/events/${selectedEvent._id}`, form)
         .then(res => {
           alert('Event updated!');
           fetchEvents();
@@ -54,7 +54,7 @@ const EventForm = ({ selectedEvent, fetchEvents, clearSelectedEvent }) => {
         })
         .catch(err => alert('Error updating event'));
     } else {
-      axios.post('http://localhost:5000/api/events', form)
+      axios.post('https://event-management-1-gg05.onrender.com/api/events', form)
         .then(res => {
           alert('Event added!');
           fetchEvents();

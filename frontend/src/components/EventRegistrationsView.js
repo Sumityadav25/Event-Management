@@ -10,7 +10,7 @@ const EventRegistrationsView = ({ selectedEvent, registrations, onBack, onRefres
   const handleVerify = async (regId, action) => {
     const reason = action === 'reject' ? prompt('Rejection reason (optional):') : null;
     try {
-      await axios.post(`http://localhost:5000/api/registration/verify/${regId}`, { action, rejectionReason: reason });
+      await axios.post(`https://event-management-1-gg05.onrender.com/api/registration/verify/${regId}`, { action, rejectionReason: reason });
       toast.success(action === 'approve' ? 'Confirmed!' : 'Rejected');
       onRefresh();
     } catch (error) {

@@ -38,7 +38,7 @@ const DashboardCoordinator = ({ user }) => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/events');
+      const res = await axios.get('https://event-management-1-gg05.onrender.com/api/events');
       setEvents(res.data);
     } catch (error) {
       toast.error('Failed to load events');
@@ -47,7 +47,7 @@ const DashboardCoordinator = ({ user }) => {
 
   const fetchEventRegistrations = async (eventId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/registration/event/${eventId}`);
+      const res = await axios.get(`https://event-management-1-gg05.onrender.com/api/registration/event/${eventId}`);
       setSelectedEvent(events.find(e => e._id === eventId));
       setRegistrations(res.data);
     } catch (error) {
@@ -64,11 +64,11 @@ const DashboardCoordinator = ({ user }) => {
     }
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/events/${editingId}`, form);
+        await axios.put(`https://event-management-1-gg05.onrender.com/api/events/${editingId}`, form);
         toast.success('Event updated!');
         setEditingId(null);
       } else {
-        await axios.post('http://localhost:5000/api/events', form);
+        await axios.post('https://event-management-1-gg05.onrender.com/api/events', form);
         toast.success('Event created!');
       }
       resetForm();
@@ -125,7 +125,7 @@ const DashboardCoordinator = ({ user }) => {
   const handleDelete = async (id) => {
     if (window.confirm('Delete this event and all its registrations?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/events/${id}`);
+        await axios.delete(`https://event-management-1-gg05.onrender.com/api/events/${id}`);
         toast.success('Event deleted');
         fetchEvents();
       } catch (error) {

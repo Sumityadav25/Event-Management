@@ -13,7 +13,7 @@ const LoginForm = ({ onLoginSuccess }) => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', form);
+      const res = await axios.post('https://event-management-1-gg05.onrender.com/api/auth/login', form);
       
       console.log('=== LOGIN SUCCESS ===');
       console.log('Token:', res.data.token?.substring(0, 20) + '...');

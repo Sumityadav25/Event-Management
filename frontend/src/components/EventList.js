@@ -5,7 +5,7 @@ const EventList = ({ setSelectedEvent, events, fetchEvents, user }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/events/${id}`);
+      await axios.delete(`https://event-management-1-gg05.onrender.com/api/events/${id}`);
       alert('Event deleted!');
       fetchEvents();
     } catch (err) {
@@ -15,7 +15,7 @@ const EventList = ({ setSelectedEvent, events, fetchEvents, user }) => {
 
   const handleRegister = async (eventId) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/registration/register', { eventId });
+      const res = await axios.post('https://event-management-1-gg05.onrender.com/api/registration/register', { eventId });
       alert(res.data.message || 'Registered successfully!');
     } catch (error) {
       alert(error.response?.data?.message || 'Registration failed');

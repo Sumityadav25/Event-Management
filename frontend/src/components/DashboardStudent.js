@@ -14,7 +14,7 @@ const DashboardStudent = ({ user }) => {
  
   const fetchEvents = useCallback (async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/events', {
+      const res = await axios.get('https://event-management-1-gg05.onrender.com/api/events', {
         params: { search, category: category !== 'all' ? category : undefined, status: 'upcoming' }
       });
       setEvents(res.data);
@@ -25,7 +25,7 @@ const DashboardStudent = ({ user }) => {
 
   const fetchMyRegistrations = useCallback (async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/registration/my-registrations');
+      const res = await axios.get('https://event-management-1-gg05.onrender.com/api/registration/my-registrations');
       setMyRegistrations(res.data);
     } catch (error) {
       toast.error('Failed to load registrations');
@@ -41,7 +41,7 @@ const DashboardStudent = ({ user }) => {
   const handleCancelRegistration = async (regId) => {
     if (window.confirm('Are you sure you want to cancel this registration?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/registration/${regId}`);
+        await axios.delete(`https://event-management-1-gg05.onrender.com/api/registration/${regId}`);
         toast.success('Registration cancelled');
         fetchMyRegistrations();
         fetchEvents();
@@ -412,7 +412,7 @@ const RegistrationForm = ({ event, onClose, onSuccess }) => {
         }
       }
 
-      const response = await axios.post('http://localhost:5000/api/registration/register', {
+      const response = await axios.post('https://event-management-1-gg05.onrender.com/api/registration/register', {
         eventId: event._id,
         ...formData
       });
@@ -762,7 +762,7 @@ const UserProfile = ({ user, setShowProfile }) => {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/users/profile');
+      const res = await axios.get('https://event-management-1-gg05.onrender.com/api/users/profile');
       setProfile(res.data);
     } catch (error) {
       toast.error('Failed to load profile');
@@ -772,7 +772,7 @@ const UserProfile = ({ user, setShowProfile }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put('http://localhost:5000/api/users/profile', profile);
+      await axios.put('https://event-management-1-gg05.onrender.com/api/users/profile', profile);
       toast.success('Profile updated successfully');
     } catch (error) {
       toast.error('Failed to update profile');

@@ -28,7 +28,7 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', form);
+      const res = await axios.post('https://event-management-1-gg05.onrender.com/api/auth/signup', form);
       toast.success(res.data.message || 'Signup successful! Now login.');
       setForm({ name: '', email: '', password: '', role: 'student', universalPassword: '' });
       setShowUniversalPassword(false);

@@ -10,7 +10,7 @@ const MyRegistrations = () => {
 
   const fetchRegistrations = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/registration/my-registrations');
+      const res = await axios.get('https://event-management-1-gg05.onrender.com/api/registration/my-registrations');
       setRegistrations(res.data);
     } catch (error) {
       console.error('Error fetching registrations:', error);
